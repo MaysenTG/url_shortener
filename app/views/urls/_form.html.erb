@@ -1,0 +1,26 @@
+<div class="form-signin w-100 m-auto mt-5 bg-white pb-5 rounded">
+<%= form_with(model: url) do |form| %>
+    <% if url.errors.any? %>
+    <div style="color: red">
+      <h2>Oops, something went wrong!</h2>
+      <strong>Please correct the errors below and try creating your URL again</strong>
+
+      <ul>
+        <% url.errors.each do |error| %>
+          <% if error.options[:message] %>
+            <li><%= error.options[:message] %></li>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <h1 class="h3 mb-3 fw-normal">Create your shortened URL</h1>
+
+    <div class="mb-3">
+      <label for="floatingInput">URL</label>
+      <%= form.text_field :original_url, id: "original_url", class: "form-control", placeholder: "Enter your long URL" %>
+    </div>
+
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Create your shortened URL</button>
+  <% end %>
+  </div>

@@ -1,0 +1,41 @@
+<!-- Optimized backend modal -->
+<div class="modal fade" id="optimizedBackendModal" tabindex="-1" aria-labelledby="optimizedBackendModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="optimizedBackendModalLabel">Optimized backend</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Track link clicks modal -->
+<div class="modal fade" id="trackLinkClicks" tabindex="-1" aria-labelledby="trackLinkClicksLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="trackLinkClicksLabel">Track link clicks</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="/search_url" method="POST" id="search_url_form">
+          <div class="mb-3">
+            <label for="inputShortLink" class="form-label">Your short URL</label>
+            <input type="text" name="short_url" placeholder="<%= request.base_url %>/jdu132dis" class="form-control" id="inputShortLink">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" form="search_url_form" class="btn btn-primary">View my URL</button>
+      </div>
+    </div>
+  </div>
+</div>

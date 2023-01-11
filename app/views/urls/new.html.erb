@@ -1,0 +1,57 @@
+<div class="d-flex flex-column justify-content-center w-100">
+  <% if notice %>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <%= notice.html_safe %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <% end %>
+
+  <div class="container">
+    <%= render "form", url: @url %>
+    <br>
+  </div>
+  
+  <div class="container px-4 py-5" id="hanging-icons">
+    <h2 class="pb-2 border-bottom">Why use our service?</h2>
+    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+      <div class="col d-flex align-items-start">
+        <div class="icon-square text-bg-light d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+          <svg class="bi" width="1em" height="1em"><use xlink:href="#toggles2"></use></svg>
+        </div>
+        <div>
+          <h3 class="fs-2">Easy</h3>
+          <p>All you have to do is enter the long URL, click the button, and your short URL has been created - no account creation is required!</p>
+        </div>
+      </div>
+      <div class="col d-flex align-items-start">
+        <div class="icon-square text-bg-light d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+          <i class="bi bi-lightning-charge"></i>
+        </div>
+        <div>
+          <h3 class="fs-2">Fast</h3>
+          <p>Our backend is designed and indexed to ensure that short URL lookups are insanely quick</p>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#optimizedBackendModal">
+            Learn more
+          </button>
+        </div>
+      </div>
+      <div class="col d-flex align-items-start">
+        <div class="icon-square text-bg-light d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+          <i class="bi bi-graph-up"></i>
+        </div>
+        <div>
+          <h3 class="fs-2">Statistics</h3>
+          <p>Each link click is tracked and linked to the respective link. You can </p>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#trackLinkClicks">
+            Track your links
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render "urls/partials/features" %>
+
+<%= render "urls/partials/modals" %>
+
