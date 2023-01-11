@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  
+  get '/contact' => 'contact#index', as: 'contact'
+  
   get '/urls', to: redirect('/')
   get '/url/:url/edit', to: redirect('/')
   

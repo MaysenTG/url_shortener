@@ -27,8 +27,10 @@ class UrlsController < ApplicationController
   end
   
   def redirect
-    @url.clicks += 1
-    @url.save
+    # ActionCable - Broadcast the click to the channel
+    click_counter = ClickCounter.new(id: @url.id)
+    click_counter.update_click
+    
     redirect_to @url.original_url, allow_other_host: true
   end
   
