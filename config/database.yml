@@ -28,7 +28,7 @@ development:
   database: url_shortener_development
 
   username: postgres
-  password: qd!/][Km92
+  password: <%= Rails.application.credentials.DB_PASSWORD %>
 
   # The TCP port the server listens on. Defaults to 5432.
   # If your server runs on a different port number, change accordingly.

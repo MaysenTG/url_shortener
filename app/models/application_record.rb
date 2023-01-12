@@ -5,7 +5,7 @@ class ApplicationRecord < ActiveRecord::Base
 
   def create_short_url
     self.shortened_url = generate_short_url
-    until Url.where(shortened_url: self.shortened_url).first.nil?
+    until Url.find_by(shortened_url: self.shortened_url).nil?
       self.shortened_url = generate_short_url
     end
   end
