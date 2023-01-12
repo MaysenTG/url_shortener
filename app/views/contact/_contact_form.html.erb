@@ -1,14 +1,23 @@
-<div class="form-signin w-100 m-auto mt-5 pb-5 mb-5 rounded" style="background: darkgray;">
-  <h1 class="h3 mb-3 fw-normal">Get in touch</h1>
+<div data-controller="contact" class="form-signin w-100 m-auto mt-5 pb-5 mb-5 rounded" style="background: #e8e8e8;">
+  <h1 class="h3 mb-3 fw-normal"><%= t("contact.heading") %></h1>
   <form action="/contact" method="POST">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>  
     <div class="mb-3">
-      <label for="inputEmail" class="form-label">Email address</label>
-      <input type="email" class="form-control" id="inputEmail" name="email">
+      <label for="inputName" class="form-label"><%= t("contact.form.name.label") %></label>
+      <input type="text" data-action="change->contact#validateInputs" placeholder="<%= t("contact.form.name.placeholder") %>" class="border border-3 form-control" id="inputName" name="name">
     </div>
     <div class="mb-3">
-      <label for="inputMessage" class="form-label">Message</label>
-      <textarea type="password" class="form-control" id="inputMessage" name="message"></textarea>
+      <label for="inputEmail" class="form-label"><%= t("contact.form.email.label") %></label>
+      <input data-action="change->contact#validateInputs" type="email" placeholder="<%= t("contact.form.email.placeholder") %>" class="border border-3 form-control" id="inputEmail" name="email">
     </div>
-    <button type="submit" class="btn btn-primary">Submit message</button>
+    <div class="mb-3">
+      <label for="inputMessage" class="form-label"><%= t("contact.form.message.label") %></label>
+      <textarea type="password" data-action="change->contact#validateInputs" placeholder="<%= t("contact.form.message.placeholder") %>" class="border border-3 form-control" id="inputMessage" name="message"></textarea>
+    </div>
+    <button id="submit-button" data-action="click->contact#submitForm" type="submit" class="btn btn-primary">Submit message</button>
+    <button id="submit-button-loading" class="d-none btn btn-primary" type="button" disabled>
+      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      Sending email...
+    </button>
   </form>
 </div>

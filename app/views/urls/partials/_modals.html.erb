@@ -3,11 +3,11 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="optimizedBackendModalLabel">Optimized backend</h1>
+        <h1 class="modal-title fs-5" id="optimizedBackendModalLabel"><%= t("modals.fast.heading") %></h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...
+        <%= t("modals.fast.paragraph") %>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -21,20 +21,20 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="trackLinkClicksLabel">Track link clicks</h1>
+        <h1 class="modal-title fs-5" id="trackLinkClicksLabel"><%= t("modals.track_clicks.heading") %></h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <form action="/search_url" method="POST" id="search_url_form">
           <div class="mb-3">
-            <label for="inputShortLink" class="form-label">Your short URL</label>
-            <input type="text" name="short_url" placeholder="<%= request.base_url %>/jdu132dis" class="form-control" id="inputShortLink">
+            <label for="inputShortLink" class="form-label"><%= t("modals.track_clicks.form.short_url_label") %></label>
+            <input type="text" name="short_url" required placeholder="<%= request.base_url %>/jdu132dis" class="form-control" id="inputShortLink">
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" form="search_url_form" class="btn btn-primary">View my URL</button>
+        <button type="submit" form="search_url_form" class="btn btn-primary"><%= t("modals.track_clicks.form.submit_button") %></button>
       </div>
     </div>
   </div>

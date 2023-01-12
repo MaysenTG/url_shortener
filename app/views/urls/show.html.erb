@@ -1,12 +1,12 @@
 <div class="container">
   <div class="px-4 py-5 my-5 text-center">
-    <h1 class="display-5 fw-bold">Your short link is <strong><a id="short-url" target="_blank noreferrer" href="<%= request.base_url %>/<%= @url.shortened_url %>"><%= @url.shortened_url %></a></strong> &nbsp; <button id="liveToastBtn" class="btn"><i onclick="copyShortUrl();" class="fs-2 bi bi-clipboard"></i></button></h1>
+    <h1 class="display-5 fw-bold"><%= t("show_url.heading") %> <strong><a id="short-url" target="_blank noreferrer" href="<%= request.base_url %>/<%= @url.shortened_url %>"><%= @url.shortened_url %></a></strong> &nbsp; <button id="liveToastBtn" class="btn"><i onclick="copyShortUrl();" class="fs-2 bi bi-clipboard"></i></button></h1>
     <div class="col-lg-6 mx-auto">
-      <p class="lead mb-4">Share this url with others, and they'll be redirected to <strong><a target="_blank noreferrer" href="<%= @url.original_url %>"><%= @url.original_url %></a></strong></p>
+      <p class="lead mb-4"><%= t("show_url.share") %> <strong><a target="_blank noreferrer" href="<%= @url.original_url %>"><%= @url.original_url %></a></strong></p>
       <p class="lead mb-4">Your URL has been clicked <a href="#" data-bs-toggle="tooltip" data-bs-title="Clicks is the amount of times anyone at any time has landed on your URL."><strong><span id="url-click-count"><%= @url.clicks %></span></strong></a> times!</p>
       <br/>
       <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-        <a href="/" class="btn btn-primary btn-lg px-4 gap-3">Create another short URL</a>
+        <a href="/" class="btn btn-primary btn-lg px-4 gap-3"><%= t("show_url.create_new_button") %></a>
       </div>
     </div>
   </div>
@@ -37,12 +37,12 @@ document.addEventListener('DOMContentLoaded', () => {
 <div class="toast-container position-fixed bottom-0 end-0 p-3">
   <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
     <div class="toast-header">
-      <strong class="me-auto">Copied the short URL</strong>
+      <strong class="me-auto"><%= t("show_url.toast.heading") %></strong>
       <small>Just now</small>
       <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
     </div>
     <div class="toast-body">
-      You can now share this URL with others.
+      <%= t("show_url.toast.paragraph") %>
     </div>
   </div>
 </div>

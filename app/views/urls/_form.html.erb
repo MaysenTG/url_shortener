@@ -1,9 +1,9 @@
-<div class="form-signin w-100 m-auto mt-5 pb-5 rounded" style="background: darkgray;">
+<div class="form-signin w-100 m-auto mt-5 pb-5 rounded" style="background: #e8e8e8;">
 <%= form_with(model: url, id: "create-url-form") do |form| %>
     <% if url.errors.any? %>
     <div style="color: red">
-      <h2>Oops, something went wrong!</h2>
-      <strong>Please correct the errors below and try creating your URL again</strong>
+      <h2><%= t("forms.new.errors.title") %></h2>
+      <strong><%= t("forms.new.errors.correction") %></strong>
 
       <ul>
         <% url.errors.each do |error| %>
@@ -14,13 +14,13 @@
       </ul>
     </div>
   <% end %>
-    <h1 class="h3 mb-3 fw-normal">Create your shortened URL</h1>
+    <h1 class="h3 mb-3 fw-normal"><%= t("forms.new.title") %></h1>
 
     <div class="mb-3">
-      <label for="floatingInput">URL</label>
-      <%= form.text_field :original_url, id: "original_url", class: "form-control", placeholder: "Enter your long URL" %>
+      <label for="floatingInput"><%= t("forms.new.input_label") %></label>
+      <%= form.text_field :original_url, id: "original_url", class: "form-control", placeholder: t('forms.new.input_placeholder') %>
     </div>
 
-    <button class="w-100 btn btn-lg btn-primary" type="submit">Create your shortened URL</button>
+    <button class="w-100 btn btn-lg btn-primary" type="submit"><%= t("forms.new.submit_button") %></button>
   <% end %>
   </div>
