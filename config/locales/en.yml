@@ -1,8 +1,8 @@
 en:
   features:
     heading: "What makes us great?"
-    subheading: ""
-    paragraph: ""
+    subheading: "We're a free, fast, and easy to use URL shortener."
+    paragraph: "We're a free, fast, and easy to use URL shortener. We know that you want to create short URLs, and we're here to help you do that. We've implemented many techniques to ensure that your short URLs are fast, and we're always looking for ways to improve our service."
     
     feature1:
       heading: "Free"
@@ -47,7 +47,7 @@ en:
   modals:
     fast:
       heading: "Optimized backend"
-      paragraph: "We implement many techniques to speed up your short URL lookups.<br/><br/><h4>Database indexing</h4><ul><li>We've included the short URL as an index on our Database table, so regardless of how many entries there are, the lookups will remain lightning fast</li></ul><br/><h4>Up to date dependencies</h4><ul><li>We use the most up to date bundles (including Rails, Puma)</li><li>We're using Ruby 3.2.0, which contained massive performance improvements.</li></ul><br/><h4>Caching</h4><ul><li></li></ul>"
+      paragraph: "We implement many techniques to speed up your short URL lookups.<br/><br/><h4>Database indexing</h4><ul><li>We've included the short URL as an index on our database table, so regardless of how many entries there are, the lookups will remain lightning fast!</li></ul><br/><h4>Up to date dependencies</h4><ul><li>We use the most up to date bundles (including Rails, Puma, Redis)</li><li>We're using Ruby 3.2.0, which contained massive performance improvements.</li></ul><br/><h4>Optimized queries and actions</h4><ul><li>Each task is only added if there's neglible performance differences.</li><li>The app is mainly used for URL lookups, so the existing actions/tasks are only for the lookups.</li></ul>"
     
     track_clicks:
       heading: "Track link clicks"
