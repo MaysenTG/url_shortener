@@ -29,6 +29,9 @@ class UrlsController < ApplicationController
   def redirect
     # ActionCable - Broadcast the click to the channel
     
+    # Can't cache the redirect, otherwise the click won't be counted
+    response.headers["Cache-Control"] = "no-store"
+    
     click_counter = ClickCounter.new(url: @url)
     click_counter.update_click
     
