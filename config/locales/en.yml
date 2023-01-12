@@ -14,7 +14,7 @@ en:
       
     feature3:
       heading: "Statistics"
-      paragraph: "Each link click is tracked and linked to the respective link. Link clicks are updated in realtime too! <a href='#' data-bs-toggle='modal' data-bs-target='#trackLinkClicks'>Click here to track your short URL link clicks</a>"
+      paragraph: "Each link click is tracked and linked to the respective link. Link clicks are updated in realtime too! <a href='#' data-bs-toggle='modal' data-bs-target='#trackLinkClicks'>Click here to track your short URL link clicks.</a>"
       
     feature4:
       heading: "Easy"
@@ -47,7 +47,7 @@ en:
   modals:
     fast:
       heading: "Optimized backend"
-      paragraph: ""
+      paragraph: "We implement many techniques to speed up your short URL lookups.<br/><br/><h4>Database indexing</h4><ul><li>We've included the short URL as an index on our Database table, so regardless of how many entries there are, the lookups will remain lightning fast</li></ul><br/><h4>Up to date dependencies</h4><ul><li>We use the most up to date bundles (including Rails, Puma)</li><li>We're using Ruby 3.2.0, which contained massive performance improvements.</li></ul><br/><h4>Caching</h4><ul><li></li></ul>"
     
     track_clicks:
       heading: "Track link clicks"

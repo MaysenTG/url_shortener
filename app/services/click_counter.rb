@@ -1,20 +1,18 @@
 class ClickCounter
-  def initialize(id:)
-    @id = id
+  def initialize(url:)
+    @url = url
   end
   
   def update_click
-    url = Url.find(@id)
-    
-    url.clicks += 1
-    url.save!
+    @url.clicks += 1
+    @url.save!
 
-    channel_name = "click_channel_#{url.shortened_url}"
+    channel_name = "click_channel_#{@url.shortened_url}"
     
     ActionCable.server.broadcast(
       channel_name,
       {
-        click_count: url.clicks,
+        click_count: @url.clicks,
       }
     )
   end

@@ -28,7 +28,11 @@ class UrlsController < ApplicationController
   
   def redirect
     # ActionCable - Broadcast the click to the channel
-    click_counter = ClickCounter.new(id: @url.id)
+    
+    # Edit the cache control headers to allow caching
+    response.headers["Cache-Control"] = "public, max-age=31536000"
+    
+    click_counter = ClickCounter.new(url: @url)
     click_counter.update_click
     
     redirect_to @url.original_url, allow_other_host: true

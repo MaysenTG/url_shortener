@@ -14,7 +14,7 @@
       <label for="inputMessage" class="form-label"><%= t("contact.form.message.label") %></label>
       <textarea type="password" data-action="change->contact#validateInputs" placeholder="<%= t("contact.form.message.placeholder") %>" class="border border-3 form-control" id="inputMessage" name="message"></textarea>
     </div>
-    <button id="submit-button" data-action="click->contact#submitForm" type="submit" class="btn btn-primary">Submit message</button>
+    <button id="submit-button" data-action="click->contact#submitForm" type="submit" class="btn btn-primary"><%= t("contact.form.submit_button") %></button>
     <button id="submit-button-loading" class="d-none btn btn-primary" type="button" disabled>
       <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
       Sending email...

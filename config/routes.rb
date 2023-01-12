@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get '/:shortened_url', to: 'urls#redirect'
   
   get '/contact' => 'contact#index', as: 'contact'
   post '/contact' => 'contact#send_mail', as: 'send_contact'
@@ -11,8 +12,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "urls#new"
-  
-  get '/:shortened_url', to: 'urls#redirect'
+
   get '/:shortened_url/clicks', to: 'urls#get_clicks', as: 'url_clicks'
   get '/urls/:shortened_url', to: 'urls#show', as: 'url_show'
   
