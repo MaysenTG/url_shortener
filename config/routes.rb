@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  get '/:shortened_url', to: 'urls#redirect'
-  
   get '/contact' => 'contact#index', as: 'contact'
   post '/contact' => 'contact#send_mail', as: 'send_contact'
+  
+  get '/:shortened_url', to: 'urls#redirect'
   
   get '/urls', to: redirect('/')
   get '/url/:url/edit', to: redirect('/')

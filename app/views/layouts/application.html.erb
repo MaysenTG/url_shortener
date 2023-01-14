@@ -2,8 +2,10 @@
 <html class="h-full" lang="en">
    <head>
       <title>URL Shortener</title>
+      <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
-      <meta name="description" content="Submit a long, unappealing URL and get back a short, convenient URL to share with others."/>
+      <meta name="description" content="Submit a long, unappealing URL and get back a short, convenient URL to share with others. Long URLs are unappealing, but our short URLs allow you to easily share those long URLs with others, without directly using the long URL."/>
+      <%= favicon_link_tag asset_path('favicon-bolt.png') %>
       <%= csrf_meta_tags %>
       <%= csp_meta_tag %>
       <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
@@ -12,7 +14,9 @@
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
    </head>
    <body>
-      <%= yield %>
+      <main>
+         <%= yield %>
+      </main>
       <%= render "layouts/partials/footer" %>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
    </body>

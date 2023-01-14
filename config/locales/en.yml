@@ -2,7 +2,7 @@ en:
   features:
     heading: "What makes us great?"
     subheading: "We're a free, fast, and easy to use URL shortener."
-    paragraph: "We're a free, fast, and easy to use URL shortener. We know that you want to create short URLs, and we're here to help you do that. We've implemented many techniques to ensure that your short URLs are fast, and we're always looking for ways to improve our service."
+    paragraph: "Just enter your long URL, create the short URL, and share this on any website, social media, or anywhere else."
     
     feature1:
       heading: "Free"
@@ -10,7 +10,7 @@ en:
       
     feature2:
       heading: "Fast"
-      paragraph: "Our backend is designed and indexed to ensure that short URL lookups are insanely quick. <a href='#'' data-bs-toggle='modal' data-bs-target='#optimizedBackendModal'>Learn more.</a>"
+      paragraph: "Our backend is designed and indexed to ensure that short link lookups are insanely quick. <a href='#'' data-bs-toggle='modal' data-bs-target='#optimizedBackendModal'>Learn more.</a>"
       
     feature3:
       heading: "Statistics"
