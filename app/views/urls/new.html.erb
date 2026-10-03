@@ -1,17 +1,28 @@
-<div class="d-flex flex-column justify-content-center w-100">
-  <% if notice %>
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-      <%= notice.html_safe %>
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-  <% end %>
-
-  <div class="container">
-    <%= render "form", url: @url %>
-    <br>
+<% if notice %>
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <%= notice.html_safe %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
-</div>
+<% end %>
+
+<section class="hero">
+  <div class="hero__copy">
+    <p class="hero__eyebrow">URL Shortener</p>
+    <h1 class="hero__title">Long links, cut short.</h1>
+    <p class="hero__lede">Paste a messy URL, get a compact link you can actually share.</p>
+    <div class="hero__form">
+      <%= render "form", url: @url %>
+    </div>
+  </div>
+
+  <div class="hero__visual" aria-hidden="true">
+    <div class="hero__canvas">
+      <div class="hero__url-long">https://example.com/articles/2026/how-to-share-without-the-mess?ref=newsletter&amp;utm=long</div>
+      <div class="hero__arrow"><i class="bi bi-arrow-down"></i></div>
+      <div class="hero__url-short"><%= request.base_url %>/a7k2m9</div>
+    </div>
+  </div>
+</section>
 
 <%= render "urls/partials/features" %>
-
 <%= render "urls/partials/modals" %>

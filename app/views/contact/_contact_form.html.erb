@@ -1,18 +1,18 @@
-<div data-controller="contact" class="form-signin w-100 m-auto mt-5 pb-5 mb-5 rounded" style="background: #e8e8e8;">
-  <h1 class="h3 mb-3 fw-normal"><%= t("contact.heading") %></h1>
+<div data-controller="contact" class="panel">
+  <h1 class="panel__title"><%= t("contact.heading") %></h1>
   <form action="/contact" method="POST">
-    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>  
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
     <div class="mb-3">
       <label for="inputName" class="form-label"><%= t("contact.form.name.label") %></label>
-      <input type="text" data-action="change->contact#validateInputs" placeholder="<%= t("contact.form.name.placeholder") %>" class="border border-3 form-control" id="inputName" name="name">
+      <input type="text" data-action="change->contact#validateInputs" placeholder="<%= t("contact.form.name.placeholder") %>" class="form-control" id="inputName" name="name">
     </div>
     <div class="mb-3">
       <label for="inputEmail" class="form-label"><%= t("contact.form.email.label") %></label>
-      <input data-action="change->contact#validateInputs" type="email" placeholder="<%= t("contact.form.email.placeholder") %>" class="border border-3 form-control" id="inputEmail" name="email">
+      <input data-action="change->contact#validateInputs" type="email" placeholder="<%= t("contact.form.email.placeholder") %>" class="form-control" id="inputEmail" name="email">
     </div>
     <div class="mb-3">
       <label for="inputMessage" class="form-label"><%= t("contact.form.message.label") %></label>
-      <textarea type="password" data-action="change->contact#validateInputs" placeholder="<%= t("contact.form.message.placeholder") %>" class="border border-3 form-control" id="inputMessage" name="message"></textarea>
+      <textarea data-action="change->contact#validateInputs" placeholder="<%= t("contact.form.message.placeholder") %>" class="form-control" id="inputMessage" name="message" rows="4"></textarea>
     </div>
     <button id="submit-button" data-action="click->contact#submitForm" type="submit" class="btn btn-primary"><%= t("contact.form.submit_button") %></button>
     <button id="submit-button-loading" class="d-none btn btn-primary" type="button" disabled>

@@ -1,16 +1,27 @@
-<div class="container">
-  <div class="px-4 py-5 my-5 text-center">
-    <h1 class="display-5 fw-bold"><%= t("show_url.heading") %> <strong><a id="short-url" target="_blank noreferrer" href="<%= request.base_url %>/<%= @url.shortened_url %>"><%= @url.shortened_url %></a></strong> &nbsp; <button id="liveToastBtn" class="btn"><i onclick="copyShortUrl();" class="fs-2 bi bi-clipboard"></i></button></h1>
-    <div class="col-lg-6 mx-auto">
-      <p class="lead mb-4"><%= t("show_url.share") %> <strong><a target="_blank noreferrer" href="<%= @url.original_url %>"><%= @url.original_url %></a></strong></p>
-      <p class="lead mb-4">Your URL has been clicked <a href="#" data-bs-toggle="tooltip" data-bs-title="Clicks is the amount of times anyone at any time has landed on your URL."><strong><span id="url-click-count"><%= @url.clicks %></span></strong></a> times!</p>
-      <br/>
-      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-        <a href="/" class="btn btn-primary btn-lg px-4 gap-3"><%= t("show_url.create_new_button") %></a>
-      </div>
-    </div>
-  </div>
-</div>
+<section class="result">
+  <h1 class="result__heading">
+    <%= t("show_url.heading") %>
+    <a id="short-url" target="_blank" rel="noreferrer" href="<%= request.base_url %>/<%= @url.shortened_url %>"><%= @url.shortened_url %></a>
+    <button id="liveToastBtn" type="button" class="result__copy-btn" aria-label="Copy short URL" onclick="copyShortUrl();">
+      <i class="bi bi-clipboard fs-4"></i>
+    </button>
+  </h1>
+
+  <p class="result__meta">
+    <%= t("show_url.share") %>
+    <strong><a target="_blank" rel="noreferrer" href="<%= @url.original_url %>"><%= @url.original_url %></a></strong>
+  </p>
+
+  <p class="result__clicks">
+    Your URL has been clicked
+    <a href="#" data-bs-toggle="tooltip" data-bs-title="Clicks is the amount of times anyone at any time has landed on your URL.">
+      <span id="url-click-count"><%= @url.clicks %></span>
+    </a>
+    times!
+  </p>
+
+  <a href="/" class="btn btn-primary btn-lg px-4"><%= t("show_url.create_new_button") %></a>
+</section>
 
 <script>
 function copyShortUrl() {
@@ -24,13 +35,12 @@ document.addEventListener('DOMContentLoaded', () => {
   if (toastTrigger) {
     toastTrigger.addEventListener('click', () => {
       const toast = new bootstrap.Toast(toastLiveExample)
-
       toast.show()
     })
   }
-  
+
   const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-  const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+  ;[...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 })
 </script>
 

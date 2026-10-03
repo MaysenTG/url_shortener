@@ -1,45 +1,34 @@
-<div class="container px-4 py-5">
-    <h2 class="pb-2 border-bottom"><%= t("features.heading") %></h2>
+<section class="features">
+  <h2 class="features__heading"><%= t("features.heading") %></h2>
 
-    <div class="row row-cols-1 row-cols-md-2 align-items-md-center g-5 py-5">
-      <div class="col d-flex flex-column align-items-start gap-2">
-        <h3 class="fw-bold"><%= t("features.subheading") %></h3>
-        <p class="text-muted"><%= t("features.paragraph") %></p>
-      </div>
+  <div class="row row-cols-1 row-cols-md-2 align-items-md-start g-4 g-md-5">
+    <div class="col features__intro">
+      <h3><%= t("features.subheading") %></h3>
+      <p><%= t("features.paragraph") %></p>
+    </div>
 
-      <div class="col">
-        <div class="row row-cols-1 row-cols-sm-2 g-4">
-          <div class="col d-flex flex-column gap-2">
-            <div class="d-inline-flex align-items-center fs-4 rounded-3">
-              <h4 class="fw-semibold mb-0"><%= t("features.feature1.heading") %></h4>
-              
-            </div>
-            <p class="text-muted"><%= t("features.feature1.paragraph").html_safe %></p>
-          </div>
+    <div class="col">
+      <div class="feature-grid">
+        <div class="feature-item">
+          <h4><i class="bi bi-gift" aria-hidden="true"></i> <%= t("features.feature1.heading") %></h4>
+          <p><%= t("features.feature1.paragraph").html_safe %></p>
+        </div>
 
-          <div class="col d-flex flex-column gap-2">
-            <div class="d-inline-flex align-items-center fs-4 rounded-3">
-              <i class="bi bi-lightning-charge"></i>
-              <h4 class="fw-semibold mb-0"><%= t("features.feature2.heading") %></h4>
-            </div>
-            <p class="text-muted"><%= t("features.feature2.paragraph").html_safe %></a></p>
-          </div>
+        <div class="feature-item">
+          <h4><i class="bi bi-lightning-charge" aria-hidden="true"></i> <%= t("features.feature2.heading") %></h4>
+          <p><%= t("features.feature2.paragraph").html_safe %></p>
+        </div>
 
-          <div class="col d-flex flex-column gap-2">
-            <div class="d-inline-flex align-items-center fs-4 rounded-3">
-              <i class="bi bi-graph-up"></i>&nbsp;
-              <h4 class="fw-semibold mb-0"><%= t("features.feature3.heading") %></h4>
-            </div>
-            <p class="text-muted"><%= t("features.feature3.paragraph").html_safe %></p>
-          </div>
+        <div class="feature-item">
+          <h4><i class="bi bi-graph-up" aria-hidden="true"></i> <%= t("features.feature3.heading") %></h4>
+          <p><%= t("features.feature3.paragraph").html_safe %></p>
+        </div>
 
-          <div class="col d-flex flex-column gap-2">
-            <div class="d-inline-flex align-items-center fs-4 rounded-3">
-              <h4 class="fw-semibold mb-0"><%= t("features.feature4.heading") %></h4>
-            </div>
-            <p class="text-muted"><%= t("features.feature4.paragraph").html_safe %></p>
-          </div>
+        <div class="feature-item">
+          <h4><i class="bi bi-hand-index-thumb" aria-hidden="true"></i> <%= t("features.feature4.heading") %></h4>
+          <p><%= t("features.feature4.paragraph").html_safe %></p>
         </div>
       </div>
     </div>
   </div>
+</section>

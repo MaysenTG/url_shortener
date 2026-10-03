@@ -1,24 +1,38 @@
-# README
+# URL Shortener
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Rails app that turns long URLs into short shareable links, with click tracking.
 
-Things you may want to cover:
+## Requirements
 
-* Ruby version
+- Ruby 3.2.0
+- PostgreSQL
+- Redis (for Action Cable / live click updates)
 
-* System dependencies
+## Boot
 
-* Configuration
+```bash
+bundle install
+```
 
-* Database creation
+Create the database password in Rails credentials (`DB_PASSWORD`), matching your local Postgres user:
 
-* Database initialization
+```bash
+EDITOR="nano" bin/rails credentials:edit
+```
 
-* How to run the test suite
+Example credentials entry:
 
-* Services (job queues, cache servers, search engines, etc.)
+```yaml
+DB_PASSWORD: your_postgres_password
+```
 
-* Deployment instructions
+Then:
 
-* ...
+```bash
+bin/rails db:prepare
+bin/rails server
+```
+
+Open [http://localhost:3000](http://localhost:3000).
+
+Make sure Redis is running locally (`redis://localhost:6379/1` by default in development).

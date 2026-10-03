@@ -1,31 +1,31 @@
 en:
   features:
-    heading: "What makes us great?"
-    subheading: "We're a free, fast, and easy to use URL shortener."
-    paragraph: "Just enter your long URL, create the short URL, and share this on any website, social media, or anywhere else."
+    heading: "Why use it"
+    subheading: "Free, fast, and simple."
+    paragraph: "Enter a long URL, create a short one, and share it anywhere — no account needed."
     
     feature1:
       heading: "Free"
-      paragraph: "Our service is free, so you can create as many short URLs as you like."
+      paragraph: "Create as many short URLs as you like. No signup, no fees."
       
     feature2:
       heading: "Fast"
-      paragraph: "Our backend is designed and indexed to ensure that short link lookups are insanely quick. <a href='#'' data-bs-toggle='modal' data-bs-target='#optimizedBackendModal'>Learn more.</a>"
+      paragraph: "Lookups are indexed for speed. <a href='#' data-bs-toggle='modal' data-bs-target='#optimizedBackendModal'>Learn more.</a>"
       
     feature3:
       heading: "Statistics"
-      paragraph: "Each link click is tracked and linked to the respective link. Link clicks are updated in realtime too! <a href='#' data-bs-toggle='modal' data-bs-target='#trackLinkClicks'>Click here to track your short URL link clicks.</a>"
+      paragraph: "Every click is tracked and updates in realtime. <a href='#' data-bs-toggle='modal' data-bs-target='#trackLinkClicks'>Track a short URL.</a>"
       
     feature4:
       heading: "Easy"
-      paragraph: "All you have to do is enter the long URL, click the button, and your short URL has been created - no account creation is required!"
+      paragraph: "Paste the long URL, hit create, and you're done."
       
   forms:
     new:
-      title: "Create your shortened URL"
-      input_label: "URL"
-      input_placeholder: "Enter your long URL"
-      submit_button: "Create your shortened URL"
+      title: "Shorten a URL"
+      input_label: "Long URL"
+      input_placeholder: "https://example.com/your/very/long/path"
+      submit_button: "Create short link"
       errors:
         title: "Oops, something went wrong!"
         correction: "Please correct the errors below and try creating your URL again"
