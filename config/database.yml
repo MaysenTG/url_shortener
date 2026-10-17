@@ -20,16 +20,14 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   # pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: maysentg
   password: <%= Rails.application.credentials.DB_PASSWORD %>
   
 
 development:
   <<: *default
   database: url_shortener_development
-
-  username: postgres
-  password: <%= Rails.application.credentials.DB_PASSWORD %>
+  username: maysen
+  password:
 
   # The TCP port the server listens on. Defaults to 5432.
   # If your server runs on a different port number, change accordingly.

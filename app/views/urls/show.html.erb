@@ -1,8 +1,24 @@
-<section class="result">
+<section
+  class="result"
+  data-controller="click-stats"
+  data-click-stats-shortened-url-value="<%= @url.shortened_url %>"
+  data-click-stats-clicks-path-value="<%= url_clicks_path(@url.shortened_url, format: :json) %>"
+>
+  <% if @url.expired? %>
+    <div class="alert alert-warning" role="status"><%= t("show_url.expired_banner") %></div>
+  <% end %>
+
   <h1 class="result__heading">
     <%= t("show_url.heading") %>
-    <a id="short-url" target="_blank" rel="noreferrer" href="<%= request.base_url %>/<%= @url.shortened_url %>"><%= @url.shortened_url %></a>
-    <button id="liveToastBtn" type="button" class="result__copy-btn" aria-label="Copy short URL" onclick="copyShortUrl();">
+    <a id="short-url" target="_blank" rel="noreferrer" href="<%= @short_link %>"><%= @url.shortened_url %></a>
+    <button
+      type="button"
+      class="result__copy-btn"
+      aria-label="Copy short URL"
+      data-controller="clipboard"
+      data-clipboard-text-value="<%= @short_link %>"
+      data-action="clipboard#copy"
+    >
       <i class="bi bi-clipboard fs-4"></i>
     </button>
   </h1>
@@ -12,35 +28,109 @@
     <strong><a target="_blank" rel="noreferrer" href="<%= @url.original_url %>"><%= @url.original_url %></a></strong>
   </p>
 
+  <% if @url.expires_at.present? %>
+    <p class="result__expiry">
+      <%= @url.expired? ? t("show_url.expired_at") : t("show_url.expires_at") %>
+      <time datetime="<%= @url.expires_at.iso8601 %>"><%= l(@url.expires_at, format: :long) %></time>
+    </p>
+  <% end %>
+
   <p class="result__clicks">
-    Your URL has been clicked
-    <a href="#" data-bs-toggle="tooltip" data-bs-title="Clicks is the amount of times anyone at any time has landed on your URL.">
-      <span id="url-click-count"><%= @url.clicks %></span>
+    <%= t("show_url.clicks_prefix") %>
+    <a href="#" data-bs-toggle="tooltip" data-bs-title="<%= t("show_url.clicks_tooltip") %>">
+      <span data-click-stats-target="clicks"><%= @url.clicks %></span>
     </a>
-    times!
+    <%= t("show_url.clicks_suffix") %>
   </p>
+
+  <dl class="result__stats">
+    <div class="result__stat">
+      <dt><%= t("show_url.stats.unique") %></dt>
+      <dd><span data-click-stats-target="unique"><%= @url.unique_clicks %></span></dd>
+    </div>
+    <div class="result__stat">
+      <dt><%= t("show_url.stats.first_clicked") %></dt>
+      <dd>
+        <% if @url.first_clicked_at %>
+          <time data-click-stats-target="firstClicked" datetime="<%= @url.first_clicked_at.iso8601 %>"><%= l(@url.first_clicked_at, format: :long) %></time>
+        <% else %>
+          <time data-click-stats-target="firstClicked"><%= t("show_url.stats.never") %></time>
+        <% end %>
+      </dd>
+    </div>
+    <div class="result__stat">
+      <dt><%= t("show_url.stats.last_clicked") %></dt>
+      <dd>
+        <% if @url.last_clicked_at %>
+          <time data-click-stats-target="lastClicked" datetime="<%= @url.last_clicked_at.iso8601 %>"><%= l(@url.last_clicked_at, format: :long) %></time>
+        <% else %>
+          <time data-click-stats-target="lastClicked"><%= t("show_url.stats.never") %></time>
+        <% end %>
+      </dd>
+    </div>
+  </dl>
+
+  <div class="result__chart">
+    <h2 class="result__chart-heading"><%= t("show_url.stats.last_7_days") %></h2>
+    <% max = max_daily_clicks(@clicks_by_day) %>
+    <div class="result__bars" role="img" aria-label="<%= t("show_url.stats.last_7_days") %>">
+      <% @clicks_by_day.each do |day| %>
+        <% height = ((day[:count].to_f / max) * 100).round %>
+        <div class="result__bar-col">
+          <div
+            class="result__bar"
+            data-click-stats-target="dayBar"
+            style="--bar-height: <%= height %>%"
+            title="<%= day[:date] %>: <%= day[:count] %>"
+          >
+            <span data-count-label><%= day[:count] %></span>
+          </div>
+          <span class="result__bar-label"><%= l(day[:date], format: "%a") %></span>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="result__share-tools">
+    <div class="result__qr">
+      <h2 class="result__qr-heading"><%= t("show_url.qr_heading") %></h2>
+      <img
+        class="result__qr-img"
+        src="<%= qr_code_image_url(@short_link) %>"
+        width="160"
+        height="160"
+        alt="<%= t("show_url.qr_alt") %>"
+        loading="lazy"
+      >
+    </div>
+
+    <% if @top_referrers.present? %>
+      <div class="result__referrers">
+        <h2 class="result__referrers-heading"><%= t("show_url.stats.top_referrers") %></h2>
+        <ul class="result__referrer-list">
+          <% @top_referrers.each do |referrer, count| %>
+            <li>
+              <% href = safe_referrer_url(referrer) %>
+              <% if href %>
+                <a href="<%= href %>" target="_blank" rel="noreferrer noopener" class="result__referrer-link"><%= truncate(referrer, length: 64) %></a>
+              <% else %>
+                <span class="result__referrer-link"><%= truncate(referrer.to_s, length: 64) %></span>
+              <% end %>
+              <span class="result__referrer-count"><%= count %></span>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
 
   <a href="/" class="btn btn-primary btn-lg px-4"><%= t("show_url.create_new_button") %></a>
 </section>
 
 <script>
-function copyShortUrl() {
-  let short_url = document.querySelector('#short-url').href;
-  navigator.clipboard.writeText(short_url);
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  const toastTrigger = document.getElementById('liveToastBtn')
-  const toastLiveExample = document.getElementById('liveToast')
-  if (toastTrigger) {
-    toastTrigger.addEventListener('click', () => {
-      const toast = new bootstrap.Toast(toastLiveExample)
-      toast.show()
-    })
-  }
-
+document.addEventListener('turbo:load', () => {
   const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-  ;[...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+  ;[...tooltipTriggerList].map((el) => new bootstrap.Tooltip(el))
 })
 </script>
 

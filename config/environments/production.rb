@@ -58,9 +58,10 @@ Rails.application.configure do
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
 
-  # Use a real queuing backend for Active Job (and separate queues per environment).
-  # config.active_job.queue_adapter     = :resque
-  # config.active_job.queue_name_prefix = "url_shortener_production"
+  # In-process async jobs keep the single-VM Fly deploy simple.
+  # Swap to Sidekiq/Solid Queue + a worker process before high click volume.
+  config.active_job.queue_adapter = :async
+
 
   config.action_mailer.perform_caching = false
 

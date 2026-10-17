@@ -1,30 +1,36 @@
 en:
   features:
-    heading: "Why use it"
+    heading: "Why it’s here"
     subheading: "Free, fast, and simple."
-    paragraph: "Enter a long URL, create a short one, and share it anywhere — no account needed."
-    
+    paragraph: "No accounts. No dashboard clutter. Shorten a link, share it, watch the clicks."
+
     feature1:
       heading: "Free"
-      paragraph: "Create as many short URLs as you like. No signup, no fees."
-      
+      paragraph: "As many short links as you need. No signup, no fees."
+
     feature2:
       heading: "Fast"
-      paragraph: "Lookups are indexed for speed. <a href='#' data-bs-toggle='modal' data-bs-target='#optimizedBackendModal'>Learn more.</a>"
-      
+      paragraph: "Indexed lookups so redirects stay snappy. <a href='#' data-bs-toggle='modal' data-bs-target='#optimizedBackendModal'>How it works</a>"
+
     feature3:
-      heading: "Statistics"
-      paragraph: "Every click is tracked and updates in realtime. <a href='#' data-bs-toggle='modal' data-bs-target='#trackLinkClicks'>Track a short URL.</a>"
-      
+      heading: "Live stats"
+      paragraph: "Clicks update in realtime on your link page. <a href='#' data-bs-toggle='modal' data-bs-target='#trackLinkClicks'>Track a link</a>"
+
     feature4:
-      heading: "Easy"
-      paragraph: "Paste the long URL, hit create, and you're done."
+      heading: "Yours"
+      paragraph: "Optional custom codes and expiry dates when you want control."
       
   forms:
     new:
       title: "Shorten a URL"
       input_label: "Long URL"
       input_placeholder: "https://example.com/your/very/long/path"
+      more_options: "Custom code & expiry"
+      custom_code_label: "Custom short code"
+      custom_code_placeholder: "my-link"
+      custom_code_hint: "Leave blank to auto-generate. Letters, numbers, hyphens, underscores."
+      expires_label: "Expires at"
+      expires_hint: "After this time, the short link stops redirecting."
       submit_button: "Create short link"
       errors:
         title: "Oops, something went wrong!"
@@ -39,16 +45,31 @@ en:
     heading: "Your short link is "
     share: "Share this url with others, and they'll be redirected to "
     create_new_button: "Create another short URL"
-    
+    clicks_prefix: "Your URL has been clicked"
+    clicks_suffix: "times!"
+    clicks_tooltip: "Human clicks only — known bots are stored but not counted."
+    expires_at: "Expires"
+    expired_at: "Expired"
+    expired_banner: "This short link has expired and no longer redirects."
+    qr_heading: "QR code"
+    qr_alt: "QR code for this short link"
+    stats:
+      unique: "Unique visitors"
+      first_clicked: "First click"
+      last_clicked: "Last click"
+      never: "Not yet"
+      top_referrers: "Top referrers"
+      last_7_days: "Clicks · last 7 days"
+
     toast:
       heading: "Copied!"
       paragraph: "Your short URL has been copied to your clipboard."
-  
+
   modals:
     fast:
       heading: "Optimized backend"
-      paragraph: "We implement many techniques to speed up your short URL lookups.<br/><br/><h4>Database indexing</h4><ul><li>We've included the short URL as an index on our database table, so regardless of how many entries there are, the lookups will remain lightning fast!</li></ul><br/><h4>Up to date dependencies</h4><ul><li>We use the most up to date bundles (including Rails, Puma, Redis)</li><li>We're using Ruby 3.2.0, which contained massive performance improvements.</li></ul><br/><h4>Optimized queries and actions</h4><ul><li>Each task is only added if there's neglible performance differences.</li><li>The app is mainly used for URL lookups, so the existing actions/tasks are only for the lookups.</li></ul>"
-    
+      paragraph: "We implement many techniques to speed up your short URL lookups.<br/><br/><h4>Database indexing</h4><ul><li>Short codes use a unique covering index so lookups stay fast as the table grows.</li></ul><br/><h4>Async click recording</h4><ul><li>Redirects return immediately; clicks are recorded in a background job with atomic counters and an event log.</li></ul><br/><h4>Realtime stats</h4><ul><li>ActionCable streams live totals, with JSON polling as a fallback when the socket drops.</li></ul>"
+
     track_clicks:
       heading: "Track link clicks"
       form:

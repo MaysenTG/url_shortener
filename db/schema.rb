@@ -10,9 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_10_220345) do
+ActiveRecord::Schema[7.0].define(version: 2026_10_18_010000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "link_clicks", force: :cascade do |t|
+    t.bigint "url_id", null: false
+    t.datetime "clicked_at", null: false
+    t.string "referrer"
+    t.string "user_agent"
+    t.string "ip_hash"
+    t.string "country", limit: 8
+    t.boolean "bot", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["url_id", "clicked_at"], name: "index_link_clicks_on_url_id_and_clicked_at"
+    t.index ["url_id", "ip_hash"], name: "index_link_clicks_on_url_id_and_ip_hash"
+    t.index ["url_id"], name: "index_link_clicks_on_url_id"
+  end
 
   create_table "urls", force: :cascade do |t|
     t.string "original_url"
@@ -20,7 +35,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_10_220345) do
     t.integer "clicks", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["shortened_url"], name: "index_urls_on_shortened_url", unique: true
+    t.integer "unique_clicks", default: 0, null: false
+    t.datetime "first_clicked_at"
+    t.datetime "last_clicked_at"
+    t.datetime "expires_at"
+    t.boolean "custom", default: false, null: false
+    t.index ["shortened_url", "original_url", "expires_at"], name: "index_urls_on_shortened_url", unique: true
   end
 
+  add_foreign_key "link_clicks", "urls"
 end

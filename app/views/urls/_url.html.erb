@@ -14,4 +14,15 @@
     <%= url.clicks %>
   </p>
 
+  <p>
+    <strong>Unique clicks:</strong>
+    <%= url.unique_clicks %>
+  </p>
+
+  <% if url.expires_at.present? %>
+    <p>
+      <strong>Expires:</strong>
+      <%= url.expires_at %>
+    </p>
+  <% end %>
 </div>

@@ -1,26 +1,91 @@
-<div class="panel panel--hero">
-  <%= form_with(model: url, id: "create-url-form") do |form| %>
+<div
+  class="compose"
+  data-controller="url-form"
+  data-url-form-validate-url-value="<%= validate_urls_path %>"
+>
+  <%= form_with(model: url, id: "create-url-form", url: urls_path, data: { action: "submit->url-form#ensureValidBeforeSubmit" }) do |form| %>
     <% if url.errors.any? %>
       <div class="form-errors">
         <h2><%= t("forms.new.errors.title") %></h2>
         <strong><%= t("forms.new.errors.correction") %></strong>
         <ul>
           <% url.errors.each do |error| %>
-            <% if error.options[:message] %>
-              <li><%= error.options[:message] %></li>
-            <% end %>
+            <li><%= error.full_message %></li>
           <% end %>
         </ul>
       </div>
     <% end %>
 
-    <h2 class="panel__title"><%= t("forms.new.title") %></h2>
+    <h2 class="compose__title"><%= t("forms.new.title") %></h2>
 
     <div class="mb-3">
       <label for="original_url"><%= t("forms.new.input_label") %></label>
-      <%= form.text_field :original_url, id: "original_url", class: "form-control", placeholder: t("forms.new.input_placeholder"), autocomplete: "url" %>
+      <%= form.text_field :original_url,
+            id: "original_url",
+            class: "form-control #{"is-invalid" if url.errors[:original_url].any?}",
+            placeholder: t("forms.new.input_placeholder"),
+            autocomplete: "url",
+            aria: { describedby: "original_url_error" },
+            data: {
+              url_form_target: "originalUrl",
+              action: "input->url-form#validateOriginal blur->url-form#validateOriginal"
+            } %>
+      <div
+        id="original_url_error"
+        class="field-error"
+        data-url-form-target="originalError"
+        role="alert"
+        <%= "hidden" unless url.errors[:original_url].any? %>
+      ><%= url.errors[:original_url].first %></div>
     </div>
 
-    <button class="w-100 btn btn-lg btn-primary" type="submit"><%= t("forms.new.submit_button") %></button>
+    <button
+      class="w-100 btn btn-lg btn-primary"
+      type="submit"
+      data-url-form-target="submit"
+    ><%= t("forms.new.submit_button") %></button>
+
+    <details
+      class="compose__more"
+      data-url-form-target="more"
+      <%= "open" if url.custom_code.present? || url.expires_at.present? || url.errors[:custom_code].any? || url.errors[:expires_at].any? %>
+    >
+      <summary><%= t("forms.new.more_options") %></summary>
+
+      <div class="mb-3">
+        <label for="custom_code"><%= t("forms.new.custom_code_label") %></label>
+        <div class="input-group">
+          <span class="input-group-text"><%= request.host_with_port %>/</span>
+          <%= form.text_field :custom_code,
+                id: "custom_code",
+                class: "form-control #{"is-invalid" if url.errors[:custom_code].any?}",
+                placeholder: t("forms.new.custom_code_placeholder"),
+                autocomplete: "off",
+                spellcheck: false,
+                aria: { describedby: "custom_code_error" },
+                data: {
+                  url_form_target: "customCode",
+                  action: "input->url-form#validateCustom blur->url-form#validateCustom"
+                } %>
+        </div>
+        <div
+          id="custom_code_error"
+          class="field-error"
+          data-url-form-target="customError"
+          role="alert"
+          <%= "hidden" unless url.errors[:custom_code].any? %>
+        ><%= url.errors[:custom_code].first %></div>
+        <div class="form-text"><%= t("forms.new.custom_code_hint") %></div>
+      </div>
+
+      <div class="mb-3">
+        <label for="expires_at"><%= t("forms.new.expires_label") %></label>
+        <%= form.datetime_local_field :expires_at, id: "expires_at", class: "form-control #{"is-invalid" if url.errors[:expires_at].any?}" %>
+        <% if url.errors[:expires_at].any? %>
+          <div class="field-error" role="alert"><%= url.errors[:expires_at].first %></div>
+        <% end %>
+        <div class="form-text"><%= t("forms.new.expires_hint") %></div>
+      </div>
+    </details>
   <% end %>
 </div>
